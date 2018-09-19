@@ -14,7 +14,7 @@ import {
   DropdownItem
 } from "reactstrap";
 
-export default class Example extends React.Component {
+export default class myNavbar extends React.Component {
   constructor(props) {
     super(props);
 
@@ -33,13 +33,16 @@ export default class Example extends React.Component {
   render() {
     return (
       <div>
-        <Navbar dark expand="md">
+        <Navbar color="faded" light expand="md">
           <NavbarBrand href="/">AnimeDB</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="/components/">Login</NavLink>
+                <NavLink href="/">Login</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="/">News</NavLink>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
@@ -48,7 +51,6 @@ export default class Example extends React.Component {
                 <DropdownMenu right>
                   <DropdownItem>Popular</DropdownItem>
                   <DropdownItem>Updated</DropdownItem>
-                  {/* <DropdownItem divider /> */}
                   <DropdownItem>Alphabetical</DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>

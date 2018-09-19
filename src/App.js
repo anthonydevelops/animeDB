@@ -1,14 +1,24 @@
 import React, { Component } from "react";
 import Navbar from "./components/Navbar";
+import Anime from "./components/Anime";
+import { Container, Row, Col } from "reactstrap";
 import "./App.css";
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <Navbar />
-        <p className="App-intro">This is where the work will begin...</p>
-      </div>
+      <Container>
+        <Row>
+          <Col>
+            <Navbar />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <Anime />
+          </Col>
+        </Row>
+      </Container>
     );
   }
 }
