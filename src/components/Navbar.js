@@ -8,10 +8,10 @@ import {
   Nav,
   NavItem,
   NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem
+  Form,
+  FormGroup,
+  Label,
+  Input
 } from "reactstrap";
 
 export default class myNavbar extends React.Component {
@@ -38,22 +38,30 @@ export default class myNavbar extends React.Component {
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
+              <Form inline>
+                <FormGroup className="mr-3">
+                  <Label for="search" hidden>
+                    Search
+                  </Label>
+                  <Input
+                    type=""
+                    name="search"
+                    id="mySearch"
+                    placeholder="Search anime"
+                  />
+                </FormGroup>
+              </Form>
               <NavItem>
-                <NavLink href="/">Login</NavLink>
+                <NavLink active href="/">
+                  Anime
+                </NavLink>
               </NavItem>
               <NavItem>
                 <NavLink href="/">News</NavLink>
               </NavItem>
-              <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret>
-                  Anime
-                </DropdownToggle>
-                <DropdownMenu right>
-                  <DropdownItem>Popular</DropdownItem>
-                  <DropdownItem>Updated</DropdownItem>
-                  <DropdownItem>Alphabetical</DropdownItem>
-                </DropdownMenu>
-              </UncontrolledDropdown>
+              <NavItem>
+                <NavLink href="/">Login</NavLink>
+              </NavItem>
             </Nav>
           </Collapse>
         </Navbar>

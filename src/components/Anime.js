@@ -1,18 +1,9 @@
 import React, { Component } from "react";
 import "../App.css";
-import {
-  Card,
-  CardImg,
-  CardTitle,
-  CardSubtitle,
-  CardText,
-  CardDeck,
-  CardBody,
-  Button
-} from "reactstrap";
+import { Row, Col, Card, CardTitle, CardSubtitle, CardBody } from "reactstrap";
 
 const API = "https://api.jikan.moe/v3";
-const QUERY = "/top/anime";
+const QUERY = "/top/anime/1/tv?subtype=tv";
 
 class Anime extends Component {
   constructor(props) {
@@ -35,51 +26,25 @@ class Anime extends Component {
 
   render() {
     const { anime } = this.state;
+
     return (
-      <CardDeck>
+      <Row className="myRow">
         {anime.map(show => {
           return (
-            <Card className="myCard" key={show.mal_id}>
-              <CardImg
-                top
-                width="100%"
-                className="myImg img-fluid"
-                src={show.image_url}
-              />
-              <CardBody>
-                <CardTitle>{show.title}</CardTitle>
-                <CardSubtitle>{show.score}</CardSubtitle>
-                <CardText>
-                  Episodes: {show.episodes} <br />
-                  Start Date: {show.start_date} <br />
-                  End Date: {show.end_date}
-                </CardText>
-                <Button color="info" href={show.url}>
-                  Like
-                </Button>
-              </CardBody>
-            </Card>
+            <Col xs="12" md="3">
+              <Card className="w-75 h-25 myCard" key={show.mal_id}>
+                <img src={show.image_url} alt={show.title} />
+                <CardBody className="text-center">
+                  <CardTitle>{show.title}</CardTitle>
+                  <CardSubtitle>{show.episodes} Videos</CardSubtitle>
+                </CardBody>
+              </Card>
+            </Col>
           );
         })}
-      </CardDeck>
+      </Row>
     );
   }
 }
-
-// <Card key={show.mal_id}>
-//   <CardImg top width="100%" src={show.image_url} />
-//   <CardBody>
-//     <CardTitle>{show.title}</CardTitle>
-//     <CardSubtitle>{show.score}</CardSubtitle>
-//     <CardText>
-//       Episodes: {show.episodes} <br />
-//       Start Date: {show.start_date} <br />
-//       End Date: {show.end_date}
-//     </CardText>
-//     <Button color="info" href={show.url}>
-//       Like
-//     </Button>
-//   </CardBody>
-// </Card>
 
 export default Anime;

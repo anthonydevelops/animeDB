@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Navbar from "./components/Navbar";
+import Header from "./components/Header";
 import Anime from "./components/Anime";
 import { Container, Row, Col } from "reactstrap";
 import "./App.css";
@@ -13,11 +14,12 @@ class App extends Component {
             <Navbar />
           </Col>
         </Row>
-        <Row>
+        <Row className="Header">
           <Col>
-            <Anime />
+            <Header />
           </Col>
         </Row>
+        <Anime />
       </Container>
     );
   }
