@@ -33,7 +33,7 @@ export default class myNavbar extends React.Component {
   render() {
     return (
       <div>
-        <Navbar color="faded" light expand="md">
+        <Navbar color="faded" dark expand="md">
           <NavbarBrand href="/">AnimeDB</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>

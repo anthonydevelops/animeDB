@@ -1,9 +1,10 @@
 * {
-  background-color: aliceblue;
+  background-color: #222222;
+  font-family: "Exo", sans-serif;
 }
 
 .Header {
-  margin-top: 2em;
+  margin-top: 4rem;
   text-align: center;
 }
 

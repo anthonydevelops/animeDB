@@ -2,25 +2,25 @@ import React, { Component } from "react";
 import Navbar from "./components/Navbar";
 import Header from "./components/Header";
 import Anime from "./components/Anime";
-import { Container, Row, Col } from "reactstrap";
+import { Container } from "reactstrap";
 import "./App.css";
 
 class App extends Component {
   render() {
     return (
-      <Container>
-        <Row>
-          <Col>
+      <div className="App">
+        <Container>
+          <header className="App-header">
             <Navbar />
-          </Col>
-        </Row>
-        <Row className="Header">
-          <Col>
+          </header>
+          <div className="Header">
             <Header />
-          </Col>
-        </Row>
-        <Anime />
-      </Container>
+          </div>
+          <div>
+            <Anime />
+          </div>
+        </Container>
+      </div>
     );
   }
 }
