@@ -16,9 +16,9 @@ class App extends Component {
           <div className="Header">
             <Header />
           </div>
-          <div>
+          {/* <div className="anime-outer">
             <Anime />
-          </div>
+          </div> */}
         </Container>
       </div>
     );

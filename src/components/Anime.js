@@ -1,21 +1,26 @@
 import React, { PureComponent } from "react";
 import styled from "styled-components";
 import { Card, CardTitle, CardSubtitle, CardBody } from "reactstrap";
+import "../App.css";
 
 const API = "https://api.jikan.moe/v3";
-const QUERY = "/top/anime/1/tv?subtype=tv";
+// const QUERY = "/top/anime/1/tv?subtype=tv";
 
 class Anime extends PureComponent {
   state = {
-    animes: []
+    animes: [],
+    isLoading: false
   };
 
   async componentDidMount() {
+    this.setState({ isLoading: true });
+
     try {
-      const res = await fetch(API + QUERY);
+      const res = await fetch(API + this.props.match.params.query);
       const anime = await res.json();
       this.setState({
-        animes: anime.top
+        animes: anime.top,
+        isLoading: false
       });
     } catch (err) {
       console.log(err);
@@ -23,7 +28,11 @@ class Anime extends PureComponent {
   }
 
   render() {
-    const { animes } = this.state;
+    const { animes, isLoading } = this.state;
+
+    if (isLoading) {
+      return <div class="lds-dual-ring" />;
+    }
 
     return (
       <AnimeGrid>
