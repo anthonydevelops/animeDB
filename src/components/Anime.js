@@ -1,50 +1,53 @@
-import React, { Component } from "react";
-import "../App.css";
-import { Row, Col, Card, CardTitle, CardSubtitle, CardBody } from "reactstrap";
+import React, { PureComponent } from "react";
+import styled from "styled-components";
+import { CardImg, Card, CardTitle, CardSubtitle, CardBody } from "reactstrap";
 
 const API = "https://api.jikan.moe/v3";
 const QUERY = "/top/anime/1/tv?subtype=tv";
 
-class Anime extends Component {
-  constructor(props) {
-    super(props);
+class Anime extends PureComponent {
+  state = {
+    animes: []
+  };
 
-    this.state = {
-      anime: []
-    };
-  }
-
-  componentDidMount() {
-    fetch(API + QUERY)
-      .then(res => res.json())
-      .then(data =>
-        this.setState({
-          anime: data.top
-        })
-      );
+  async componentDidMount() {
+    try {
+      const res = await fetch(API + QUERY);
+      const anime = await res.json();
+      this.setState({
+        animes: anime.top
+      });
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   render() {
-    const { anime } = this.state;
+    const { animes } = this.state;
 
     return (
-      <Row className="myRow">
-        {anime.map(show => {
+      <AnimeGrid>
+        {animes.map(show => {
           return (
-            <Col xs="12" md="3">
-              <Card className="w-75 h-25 myCard" key={show.mal_id}>
-                <img src={show.image_url} alt={show.title} />
-                <CardBody className="text-center">
-                  <CardTitle>{show.title}</CardTitle>
-                  <CardSubtitle>{show.episodes} Videos</CardSubtitle>
-                </CardBody>
-              </Card>
-            </Col>
+            <Card className="w-75 h-25 myCard" key={show.mal_id}>
+              <CardImg src={show.image_url} alt={show.title} />
+              <CardBody className="text-center">
+                <CardTitle>{show.title}</CardTitle>
+                <CardSubtitle>{show.episodes} Videos</CardSubtitle>
+              </CardBody>
+            </Card>
           );
         })}
-      </Row>
+      </AnimeGrid>
     );
   }
 }
+
+const AnimeGrid = styled.div`
+  display: grid;
+  padding: 1rem;
+  grid-template-columns: repeat(5, 1fr);
+  grid-row-gap: 1rem;
+`;
 
 export default Anime;
