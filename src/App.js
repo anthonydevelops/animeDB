@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Navbar from "./components/Navbar";
-import Header from "./components/Header";
-import Anime from "./components/Anime";
+import AnimeContainer from "./components/AnimeContainer";
 import { Container } from "reactstrap";
 import "./App.css";
 
@@ -14,11 +13,8 @@ class App extends Component {
             <Navbar />
           </header>
           <div className="Header">
-            <Header />
+            <AnimeContainer />
           </div>
-          {/* <div className="anime-outer">
-            <Anime />
-          </div> */}
         </Container>
       </div>
     );

@@ -1,25 +1,28 @@
-import React, { PureComponent } from "react";
+import React, { Component } from "react";
 import styled from "styled-components";
-import { Card, CardTitle, CardSubtitle, CardBody } from "reactstrap";
-import "../App.css";
+import { Card, CardTitle, CardBody } from "reactstrap";
+import "../../App.css";
 
 const API = "https://api.jikan.moe/v3";
-// const QUERY = "/top/anime/1/tv?subtype=tv";
 
-class Anime extends PureComponent {
-  state = {
-    animes: [],
-    isLoading: false
-  };
+class Anime extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      animes: [],
+      isLoading: false
+    };
+  }
 
   async componentDidMount() {
     this.setState({ isLoading: true });
+    const QUERY = this.props.changedQuery;
 
     try {
-      const res = await fetch(API + this.props.match.params.query);
-      const anime = await res.json();
+      const res = await fetch(API + QUERY);
+      const animes = await res.json();
       this.setState({
-        animes: anime.top,
+        animes: animes.top,
         isLoading: false
       });
     } catch (err) {
@@ -31,7 +34,7 @@ class Anime extends PureComponent {
     const { animes, isLoading } = this.state;
 
     if (isLoading) {
-      return <div class="lds-dual-ring" />;
+      return <div className="lds-dual-ring" />;
     }
 
     return (
@@ -42,7 +45,6 @@ class Anime extends PureComponent {
               <AnimeImage src={show.image_url} alt={show.title} />
               <CardBody className="text-center">
                 <CardTitle className="text-white">{show.title}</CardTitle>
-                <CardSubtitle>{show.episodes} Videos</CardSubtitle>
               </CardBody>
             </Card>
           );
