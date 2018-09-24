@@ -4,25 +4,25 @@ import { Card, CardTitle, CardBody } from "reactstrap";
 import "../../App.css";
 
 const API = "https://api.jikan.moe/v3";
+const QUERY = "/top/manga/1/manga";
 
-class Anime extends Component {
+class Manga extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      animes: [],
+      manga: [],
       isLoading: false
     };
   }
 
   async componentDidMount() {
     this.setState({ isLoading: true });
-    const QUERY = this.props.changedQuery;
 
     try {
       const res = await fetch(API + QUERY);
-      const animes = await res.json();
+      const manga = await res.json();
       this.setState({
-        animes: animes.top,
+        manga: manga.top,
         isLoading: false
       });
     } catch (err) {
@@ -31,15 +31,19 @@ class Anime extends Component {
   }
 
   render() {
-    const { animes, isLoading } = this.state;
+    const { manga, isLoading } = this.state;
 
     if (isLoading) {
-      return <div className="lds-dual-ring" />;
+      return (
+        <LoadDiv>
+          <div className="lds-dual-ring" />;
+        </LoadDiv>
+      );
     }
 
     return (
       <AnimeGrid>
-        {animes.map(show => {
+        {manga.map(show => {
           return (
             <Card className="w-75 h-25 myCard" key={show.mal_id}>
               <AnimeImage src={show.image_url} alt={show.title} />
@@ -54,6 +58,11 @@ class Anime extends Component {
   }
 }
 
+const LoadDiv = styled.div`
+  margin-top: 4rem;
+  text-align: center;
+`;
+
 const AnimeGrid = styled.div`
   margin-top: 4rem;
   display: grid;
@@ -67,4 +76,4 @@ export const AnimeImage = styled.img`
   height: 13rem;
 `;
 
-export default Anime;
+export default Manga;

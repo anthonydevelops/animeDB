@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "../App.css";
 import {
   Collapse,
@@ -34,7 +35,9 @@ export default class myNavbar extends React.Component {
     return (
       <div>
         <Navbar color="faded" dark expand="md">
-          <NavbarBrand href="/">AnimeDB</NavbarBrand>
+          <NavbarBrand tag={Link} to="/">
+            AnimeDB
+          </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
@@ -52,15 +55,19 @@ export default class myNavbar extends React.Component {
                 </FormGroup>
               </Form>
               <NavItem>
-                <NavLink active href="/">
+                <NavLink tag={Link} to="/">
                   Anime
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/">News</NavLink>
+                <NavLink tag={Link} to="/manga">
+                  Manga
+                </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/">Login</NavLink>
+                <NavLink tag={Link} to="/login">
+                  Login
+                </NavLink>
               </NavItem>
             </Nav>
           </Collapse>

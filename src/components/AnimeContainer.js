@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, ButtonGroup } from "reactstrap";
 import Anime from "./AnimeData/Anime.js";
+import styled from "styled-components";
 import "../App.css";
 
 class AnimeContainer extends React.Component {
@@ -13,13 +14,12 @@ class AnimeContainer extends React.Component {
     };
   }
 
-  handleClick = (selected, query) => e => {
+  handleClick = (selected, query) => {
     this.setState({
       selected: selected,
       query: query,
       key: Math.random()
     });
-    console.log(e);
   };
 
   render() {
@@ -27,35 +27,40 @@ class AnimeContainer extends React.Component {
 
     return (
       <React.Fragment>
-        <ButtonGroup>
-          <Button
-            active={selected === 0}
-            className="btn-outline-secondary"
-            onClick={this.handleClick(0, "/top/anime/1/tv")}
-          >
-            Popular
-          </Button>
-          <Button
-            active={selected === 1}
-            className="btn-outline-secondary"
-            onClick={this.handleClick(1, "/top/anime/1/upcoming")}
-          >
-            Upcoming
-          </Button>
-          <Button
-            active={selected === 2}
-            className="btn-outline-secondary"
-            onClick={this.handleClick(2, "/top/anime/1/movie")}
-          >
-            Movie
-          </Button>
-        </ButtonGroup>
-        <div className="anime-outer">
+        <AnimeTab>
+          <ButtonGroup>
+            <Button
+              active={selected === 0}
+              className="btn-outline-secondary"
+              onClick={() => this.handleClick(0, "/top/anime/1/tv")}
+            >
+              Popular
+            </Button>
+            <Button
+              active={selected === 1}
+              className="btn-outline-secondary"
+              onClick={() => this.handleClick(1, "/top/anime/1/upcoming")}
+            >
+              Upcoming
+            </Button>
+            <Button
+              active={selected === 2}
+              className="btn-outline-secondary"
+              onClick={() => this.handleClick(2, "/top/anime/1/movie")}
+            >
+              Movie
+            </Button>
+          </ButtonGroup>
           <Anime key={this.state.key} changedQuery={query} />
-        </div>
+        </AnimeTab>
       </React.Fragment>
     );
   }
 }
+
+const AnimeTab = styled.div`
+  margin-top: 4rem;
+  text-align: center;
+`;
 
 export default AnimeContainer;
