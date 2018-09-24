@@ -12,7 +12,6 @@ const App = () => (
         <header>
           <Navbar />
         </header>
-
         <Switch>
           <Route exact path="/" component={AnimeContainer} />
           <Route path="/manga" component={Manga} />

@@ -51,7 +51,9 @@ class AnimeContainer extends React.Component {
               Movie
             </Button>
           </ButtonGroup>
-          <Anime key={this.state.key} changedQuery={query} />
+          <AnimeTab>
+            <Anime key={this.state.key} changedQuery={query} />
+          </AnimeTab>
         </AnimeTab>
       </React.Fragment>
     );
