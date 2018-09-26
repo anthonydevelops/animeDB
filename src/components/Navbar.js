@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../App.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSignInAlt } from "@fortawesome/free-solid-svg-icons";
 import {
   Collapse,
   Navbar,
@@ -34,7 +36,7 @@ export default class myNavbar extends React.Component {
   render() {
     return (
       <div>
-        <Navbar color="faded" dark expand="md">
+        <Navbar color="faded" light expand="md">
           <NavbarBrand tag={Link} to="/">
             AnimeDB
           </NavbarBrand>
@@ -66,7 +68,7 @@ export default class myNavbar extends React.Component {
               </NavItem>
               <NavItem>
                 <NavLink tag={Link} to="/login">
-                  Login
+                  <FontAwesomeIcon icon={faSignInAlt} size="lg" alt="sign-in" />
                 </NavLink>
               </NavItem>
             </Nav>

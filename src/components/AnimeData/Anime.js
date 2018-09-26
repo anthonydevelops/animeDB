@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { Card, CardTitle, CardBody } from "reactstrap";
+import { Button, ButtonGroup, Card, CardTitle, CardBody } from "reactstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar, faTrash } from "@fortawesome/free-solid-svg-icons";
 import "../../App.css";
 
 const API = "https://api.jikan.moe/v3";
@@ -41,12 +43,14 @@ class Anime extends Component {
       <AnimeGrid>
         {animes.map(show => {
           return (
-            <Card className="w-75 h-25 myCard" key={show.mal_id}>
-              <AnimeImage src={show.image_url} alt={show.title} />
-              <CardBody className="text-center">
-                <CardTitle className="text-white">{show.title}</CardTitle>
-              </CardBody>
-            </Card>
+            <React.Fragment>
+              <Card className="w-75 h-25 myCard" key={show.mal_id}>
+                <AnimeImage src={show.image_url} alt={show.title} />
+                <CardBody className="text-center">
+                  <CardTitle>{show.title}</CardTitle>
+                </CardBody>
+              </Card>
+            </React.Fragment>
           );
         })}
       </AnimeGrid>

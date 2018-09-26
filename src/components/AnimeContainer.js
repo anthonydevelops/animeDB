@@ -31,21 +31,27 @@ class AnimeContainer extends React.Component {
           <ButtonGroup>
             <Button
               active={selected === 0}
-              className="btn-outline-secondary"
+              outline
+              color="secondary"
+              className="text-black"
               onClick={() => this.handleClick(0, "/top/anime/1/tv")}
             >
               Popular
             </Button>
             <Button
               active={selected === 1}
-              className="btn-outline-secondary"
+              outline
+              color="secondary"
+              className="text-black"
               onClick={() => this.handleClick(1, "/top/anime/1/upcoming")}
             >
               Upcoming
             </Button>
             <Button
               active={selected === 2}
-              className="btn-outline-secondary"
+              outline
+              color="secondary"
+              className="text-black"
               onClick={() => this.handleClick(2, "/top/anime/1/movie")}
             >
               Movie

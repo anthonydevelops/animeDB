@@ -1,6 +1,12 @@
 * {
   font-family: "Exo", sans-serif;
-  background-color: #100233;
+  background-color: #a7bfe8;
+}
+
+button {
+  display: block;
+  outline: none !important;
+  outline-offset: none !important;
 }
 
 /* PRELOADER */
