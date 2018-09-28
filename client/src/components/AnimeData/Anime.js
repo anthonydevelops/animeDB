@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { Button, ButtonGroup, Card, CardTitle, CardBody } from "reactstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { Card, CardTitle, CardBody } from "reactstrap";
 import "../../App.css";
 
 const API = "https://api.jikan.moe/v3";
