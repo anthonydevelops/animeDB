@@ -42,10 +42,10 @@ class Anime extends Component {
         {animes.map(show => {
           return (
             <React.Fragment>
-              <Card className="w-75 h-25 myCard" key={show.mal_id}>
+              <Card className="w-75 h-25" key={show.mal_id}>
                 <AnimeImage src={show.image_url} alt={show.title} />
                 <CardBody className="text-center">
-                  <CardTitle>{show.title}</CardTitle>
+                  <CardTitle className="text-white">{show.title}</CardTitle>
                 </CardBody>
               </Card>
             </React.Fragment>

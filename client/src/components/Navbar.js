@@ -36,7 +36,7 @@ export default class myNavbar extends React.Component {
   render() {
     return (
       <div>
-        <Navbar color="faded" light expand="md">
+        <Navbar color="faded" dark expand="md">
           <NavbarBrand tag={Link} to="/">
             AnimeDB
           </NavbarBrand>
