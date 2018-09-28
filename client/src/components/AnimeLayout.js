@@ -1,10 +1,9 @@
 import React from "react";
 import { Button, ButtonGroup } from "reactstrap";
-import Anime from "./AnimeData/Anime.js";
+import Anime from "./Routes/Anime.js";
 import styled from "styled-components";
-import "../App.css";
 
-class AnimeContainer extends React.Component {
+class AnimeLayout extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -71,4 +70,4 @@ const AnimeTab = styled.div`
   text-align: center;
 `;
 
-export default AnimeContainer;
+export default AnimeLayout;

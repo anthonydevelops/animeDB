@@ -2,8 +2,8 @@ import React from "react";
 import { Container } from "reactstrap";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import AnimeContainer from "./components/AnimeContainer";
-import Manga from "./components/AnimeData/Manga";
+import AnimeLayout from "./components/AnimeLayout";
+import Manga from "./components/Routes/Manga";
 
 const App = () => (
   <Router>
@@ -13,7 +13,7 @@ const App = () => (
           <Navbar />
         </header>
         <Switch>
-          <Route exact path="/" component={AnimeContainer} />
+          <Route exact path="/" component={AnimeLayout} />
           <Route path="/manga" component={Manga} />
         </Switch>
       </Container>

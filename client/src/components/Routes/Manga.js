@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import styled from "styled-components";
-import { Card, CardTitle, CardBody } from "reactstrap";
+import styled, { keyframes } from "styled-components";
 import "../../App.css";
 
 const API = "https://api.jikan.moe/v3";
@@ -34,36 +33,54 @@ class Manga extends Component {
     const { manga, isLoading } = this.state;
 
     if (isLoading) {
-      return (
-        <LoadDiv>
-          <div className="lds-dual-ring" />;
-        </LoadDiv>
-      );
+      return <Loader />;
     }
 
     return (
-      <AnimeGrid>
+      <MangaGrid>
         {manga.map(show => {
           return (
-            <Card className="w-75 h-25 myCard" key={show.mal_id}>
-              <AnimeImage src={show.image_url} alt={show.title} />
-              <CardBody className="text-center">
-                <CardTitle className="text-white">{show.title}</CardTitle>
-              </CardBody>
-            </Card>
+            <div style={{ textAlign: "center" }} key={show.mal_id}>
+              <MangaImage src={show.image_url} alt={show.title} />
+              <MangaTitle>{show.title}</MangaTitle>
+            </div>
           );
         })}
-      </AnimeGrid>
+      </MangaGrid>
     );
   }
 }
 
-const LoadDiv = styled.div`
-  margin-top: 4rem;
-  text-align: center;
+const rotate360 = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 `;
 
-const AnimeGrid = styled.div`
+const Loader = styled.div`
+  display: inline-block;
+  width: 64px;
+  height: 64px;
+  margin-top: 4rem;
+
+  ::after {
+    content: " ";
+    display: block;
+    width: 46px;
+    height: 46px;
+    margin: 1px;
+    border-radius: 50%;
+    border: 5px solid #fff;
+    border-color: #fff transparent #fff transparent;
+    animation: ${rotate360} 1.2s linear infinite;
+  }
+`;
+
+const MangaGrid = styled.div`
   margin-top: 4rem;
   display: grid;
   padding: 1rem;
@@ -71,9 +88,17 @@ const AnimeGrid = styled.div`
   grid-row-gap: 1rem;
 `;
 
-export const AnimeImage = styled.img`
+export const MangaImage = styled.img`
   box-shadow: 0 0 15px white;
+  border-radius: 8px;
   height: 13rem;
+  width: 9rem;
+`;
+
+export const MangaTitle = styled.h5`
+  color: white;
+  margin-top: 1rem;
+  margin-bottom: 3rem;
 `;
 
 export default Manga;

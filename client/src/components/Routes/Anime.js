@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import styled from "styled-components";
-import { Card, CardTitle, CardBody } from "reactstrap";
+import styled, { keyframes } from "styled-components";
 import "../../App.css";
 
 const API = "https://api.jikan.moe/v3";
@@ -34,21 +33,19 @@ class Anime extends Component {
     const { animes, isLoading } = this.state;
 
     if (isLoading) {
-      return <div className="lds-dual-ring" />;
+      return <Loader />;
     }
 
     return (
       <AnimeGrid>
         {animes.map(show => {
           return (
-            <React.Fragment>
-              <Card className="w-75 h-25" key={show.mal_id}>
-                <AnimeImage src={show.image_url} alt={show.title} />
-                <CardBody className="text-center">
-                  <CardTitle className="text-white">{show.title}</CardTitle>
-                </CardBody>
-              </Card>
-            </React.Fragment>
+            <div key={show.mal_id}>
+              <AnimeImage src={show.image_url} alt={show.title} />
+              <div style={{ textAlign: "center" }}>
+                <AnimeTitle>{show.title}</AnimeTitle>
+              </div>
+            </div>
           );
         })}
       </AnimeGrid>
@@ -56,7 +53,36 @@ class Anime extends Component {
   }
 }
 
-const AnimeGrid = styled.div`
+const rotate360 = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+const Loader = styled.div`
+  display: inline-block;
+  width: 64px;
+  height: 64px;
+  margin-top: 4rem;
+
+  ::after {
+    content: " ";
+    display: block;
+    width: 46px;
+    height: 46px;
+    margin: 1px;
+    border-radius: 50%;
+    border: 5px solid #fff;
+    border-color: #fff transparent #fff transparent;
+    animation: ${rotate360} 1.2s linear infinite;
+  }
+`;
+
+export const AnimeGrid = styled.div`
   margin-top: 4rem;
   display: grid;
   padding: 1rem;
@@ -66,7 +92,15 @@ const AnimeGrid = styled.div`
 
 export const AnimeImage = styled.img`
   box-shadow: 0 0 15px white;
+  border-radius: 8px;
   height: 13rem;
+  width: 9rem;
+`;
+
+export const AnimeTitle = styled.h5`
+  color: white;
+  margin-top: 1rem;
+  margin-bottom: 3rem;
 `;
 
 export default Anime;
