@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import styled, { keyframes } from "styled-components";
-import "../../App.css";
 
 const API = "https://api.jikan.moe/v3";
 const QUERY = "/top/manga/1/manga";

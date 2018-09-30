@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import styled, { keyframes } from "styled-components";
-import "../../App.css";
 
 const API = "https://api.jikan.moe/v3";
 
@@ -15,6 +14,8 @@ class Anime extends Component {
 
   async componentDidMount() {
     this.setState({ isLoading: true });
+
+    // Get query from button onClick()
     const QUERY = this.props.changedQuery;
 
     try {
@@ -32,10 +33,12 @@ class Anime extends Component {
   render() {
     const { animes, isLoading } = this.state;
 
+    // Display loader while API renders
     if (isLoading) {
       return <Loader />;
     }
 
+    // Return grid of anime including images + title
     return (
       <AnimeGrid>
         {animes.map(show => {
@@ -53,6 +56,7 @@ class Anime extends Component {
   }
 }
 
+// Simple 360 rotation keyframe
 const rotate360 = keyframes`
   from {
     transform: rotate(0deg);
@@ -63,6 +67,7 @@ const rotate360 = keyframes`
   }
 `;
 
+// Preloader that displays while API loads
 const Loader = styled.div`
   display: inline-block;
   width: 64px;
@@ -82,7 +87,8 @@ const Loader = styled.div`
   }
 `;
 
-export const AnimeGrid = styled.div`
+// Layout of anime output
+const AnimeGrid = styled.div`
   margin-top: 4rem;
   display: grid;
   padding: 1rem;
@@ -90,14 +96,14 @@ export const AnimeGrid = styled.div`
   grid-row-gap: 1rem;
 `;
 
-export const AnimeImage = styled.img`
+const AnimeImage = styled.img`
   box-shadow: 0 0 15px white;
   border-radius: 8px;
   height: 13rem;
   width: 9rem;
 `;
 
-export const AnimeTitle = styled.h5`
+const AnimeTitle = styled.h5`
   color: white;
   margin-top: 1rem;
   margin-bottom: 3rem;
