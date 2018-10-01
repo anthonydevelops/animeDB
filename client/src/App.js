@@ -1,55 +1,47 @@
-import React from "react";
-import styled from "styled-components";
+import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import AnimeLayout from "./components/AnimeLayout";
+import Selector from "./components/Selector";
+import Anime from "./components/Routes/Anime";
 import Manga from "./components/Routes/Manga";
+import "./App.css";
 
-const App = () => (
-  <Router>
-    <Body>
-      <Container>
-        <header>
-          <Navbar />
-        </header>
-        <Switch>
-          <Route exact path="/" component={AnimeLayout} />
-          <Route path="/manga" component={Manga} />
-        </Switch>
-      </Container>
-      <Footer>
-        <p>Made with love by AC</p>
-      </Footer>
-    </Body>
-  </Router>
-);
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      query: ""
+    };
+  }
+
+  changedQuery = data => {
+    this.setState({
+      query: data
+    });
+  };
+
+  render() {
+    return (
+      <Router>
+        <div className="Body-wrapper">
+          <div className="Container">
+            <header>
+              <Navbar />
+            </header>
+            <Selector handleQuery={this.changedQuery} />
+            <Anime key={Math.random()} queryChange={this.state.query} />
+            <Switch>
+              {/* <Route exact path="/" component={Selector} /> */}
+              <Route path="/manga" component={Manga} />
+            </Switch>
+          </div>
+          <div className="Footer">
+            <p>Made with &#x2764; by AC</p>
+          </div>
+        </div>
+      </Router>
+    );
+  }
+}
 
 export default App;
-
-// STYLED COMPONENTS - BODY, CONTAINER, FOOTER
-const Body = styled.div`
-  font-family: "Exo", sans-serif;
-  background-color: #222238;
-  color: white;
-  display: grid;
-  grid-template-columns: 100px auto 100px;
-  grid-template-rows: repeat(3, 1fr);
-  justify-items: center;
-  grid-gap: 1em;
-`;
-
-const Container = styled.div`
-  grid-column: 2 / 3;
-  grid-row: 1 / 4;
-`;
-
-const Footer = styled.footer`
-  grid-column: 2 / 3;
-`;
-
-// background-image: linear-gradient(
-//   130deg,
-//   rgba(2, 0, 36, 1) 0%,
-//   rgba(82, 9, 121, 1) 50%,
-//   rgba(0, 212, 255, 1) 100%
-// );

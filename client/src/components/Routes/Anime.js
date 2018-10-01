@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import styled, { keyframes } from "styled-components";
+import "../../App.css";
 
 const API = "https://api.jikan.moe/v3";
+let BASE_QUERY = "/top/anime/1/tv";
 
 class Anime extends Component {
   constructor(props) {
@@ -14,12 +15,14 @@ class Anime extends Component {
 
   async componentDidMount() {
     this.setState({ isLoading: true });
+    let QUERY = this.props.queryChange;
 
-    // Get query from button onClick()
-    const QUERY = this.props.changedQuery;
+    if (QUERY.length > 0) {
+      BASE_QUERY = QUERY;
+    }
 
     try {
-      const res = await fetch(API + QUERY);
+      const res = await fetch(API + BASE_QUERY);
       const animes = await res.json();
       this.setState({
         animes: animes.top,
@@ -35,78 +38,25 @@ class Anime extends Component {
 
     // Display loader while API renders
     if (isLoading) {
-      return <Loader />;
+      return <div className="lds-dual-ring" />;
     }
 
     // Return grid of anime including images + title
     return (
-      <AnimeGrid>
+      <div className="Grid">
         {animes.map(show => {
           return (
             <div key={show.mal_id}>
-              <AnimeImage src={show.image_url} alt={show.title} />
+              <img className="Image" src={show.image_url} alt={show.title} />
               <div style={{ textAlign: "center" }}>
-                <AnimeTitle>{show.title}</AnimeTitle>
+                <h5 className="Title">{show.title}</h5>
               </div>
             </div>
           );
         })}
-      </AnimeGrid>
+      </div>
     );
   }
 }
-
-// Simple 360 rotation keyframe
-const rotate360 = keyframes`
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-`;
-
-// Preloader that displays while API loads
-const Loader = styled.div`
-  display: inline-block;
-  width: 64px;
-  height: 64px;
-  margin-top: 4rem;
-
-  ::after {
-    content: " ";
-    display: block;
-    width: 46px;
-    height: 46px;
-    margin: 1px;
-    border-radius: 50%;
-    border: 5px solid #fff;
-    border-color: #fff transparent #fff transparent;
-    animation: ${rotate360} 1.2s linear infinite;
-  }
-`;
-
-// Layout of anime output
-const AnimeGrid = styled.div`
-  margin-top: 4rem;
-  display: grid;
-  padding: 1rem;
-  grid-template-columns: repeat(5, 1fr);
-  grid-row-gap: 1rem;
-`;
-
-const AnimeImage = styled.img`
-  box-shadow: 0 0 15px white;
-  border-radius: 8px;
-  height: 13rem;
-  width: 9rem;
-`;
-
-const AnimeTitle = styled.h5`
-  color: white;
-  margin-top: 1rem;
-  margin-bottom: 3rem;
-`;
 
 export default Anime;

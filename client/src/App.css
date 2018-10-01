@@ -1,0 +1,83 @@
+* {
+  font-family: "Exo", sans-serif;
+  background-color: #222238;
+  color: white;
+}
+
+/* APP.JS CSS MARKUP */
+.Body-wrapper {
+  display: grid;
+  grid-template-columns: 100px auto 100px;
+  justify-items: center;
+  grid-gap: 1em;
+}
+
+.Container {
+  grid-column: 2 / 3;
+}
+
+.Footer {
+  grid-column: 2 / 3;
+}
+
+/* SELECTOR CSS MARKUP */
+.Anime {
+  margin-top: 4rem;
+  text-align: center;
+}
+
+/* ANIME.JS CSS MARKUP */
+.Grid {
+  margin-top: 4rem;
+  display: grid;
+  padding: 1rem;
+  grid-template-columns: repeat(5, 1fr);
+  grid-row-gap: 1rem;
+}
+
+.Image {
+  box-shadow: 0 0 15px white;
+  border-radius: 8px;
+  height: 13rem;
+  width: 9rem;
+}
+
+.Title {
+  color: white;
+  margin-top: 1rem;
+  margin-bottom: 3rem;
+}
+
+/* LOADER */
+.lds-dual-ring {
+  display: inline-block;
+  width: 64px;
+  height: 64px;
+  margin-top: 4rem;
+}
+.lds-dual-ring:after {
+  content: " ";
+  display: block;
+  width: 46px;
+  height: 46px;
+  margin: 1px;
+  border-radius: 50%;
+  border: 5px solid #fff;
+  border-color: #fff transparent #fff transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* background-image: linear-gradient(
+  130deg,
+  rgba(2, 0, 36, 1) 0%,
+  rgba(82, 9, 121, 1) 50%,
+  rgba(0, 212, 255, 1) 100%
+); */
