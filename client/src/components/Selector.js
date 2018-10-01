@@ -12,19 +12,18 @@ class Selector extends Component {
   }
 
   handleClick = (selected, query) => {
+    this.props.onUpdate(query);
     this.setState({
-      selected: selected,
-      query: query
+      selected,
+      query
     });
-
-    this.props.handleQuery(this.state.query);
   };
 
   render() {
     const { selected } = this.state;
 
     return (
-      <div className="Anime">
+      <div className="Selector">
         <ButtonGroup>
           <Button
             active={selected === 0}

@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Selector from "./components/Selector";
-import Anime from "./components/Routes/Anime";
-import Manga from "./components/Routes/Manga";
+import Anime from "./components/Anime";
+import Manga from "./components/Manga";
 import "./App.css";
 
 class App extends Component {
@@ -14,9 +14,9 @@ class App extends Component {
     };
   }
 
-  changedQuery = data => {
+  onUpdate = e => {
     this.setState({
-      query: data
+      query: e
     });
   };
 
@@ -28,11 +28,10 @@ class App extends Component {
             <header>
               <Navbar />
             </header>
-            <Selector handleQuery={this.changedQuery} />
-            <Anime key={Math.random()} queryChange={this.state.query} />
+            <Selector onUpdate={this.onUpdate} />
+            <Anime key={Math.random()} query={this.state.query} />
             <Switch>
-              {/* <Route exact path="/" component={Selector} /> */}
-              <Route path="/manga" component={Manga} />
+              <Route exact path="/manga" component={Manga} />
             </Switch>
           </div>
           <div className="Footer">

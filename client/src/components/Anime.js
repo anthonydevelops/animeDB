@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "../../App.css";
+import "../App.css";
 
 const API = "https://api.jikan.moe/v3";
 let BASE_QUERY = "/top/anime/1/tv";
@@ -15,10 +15,8 @@ class Anime extends Component {
 
   async componentDidMount() {
     this.setState({ isLoading: true });
-    let QUERY = this.props.queryChange;
-
-    if (QUERY.length > 0) {
-      BASE_QUERY = QUERY;
+    if (this.props.query.length > 0) {
+      BASE_QUERY = this.props.query;
     }
 
     try {
@@ -38,7 +36,11 @@ class Anime extends Component {
 
     // Display loader while API renders
     if (isLoading) {
-      return <div className="lds-dual-ring" />;
+      return (
+        <div style={{ textAlign: "center" }}>
+          <div className="lds-dual-ring" />
+        </div>
+      );
     }
 
     // Return grid of anime including images + title

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "../../App.css";
+import "../App.css";
 
 const API = "https://api.jikan.moe/v3";
 const QUERY = "/top/manga/1/manga";
@@ -32,7 +32,11 @@ class Manga extends Component {
     const { manga, isLoading } = this.state;
 
     if (isLoading) {
-      return <div className="lds-dual-ring" />;
+      return (
+        <div style={{ textAlign: "center" }}>
+          <div className="lds-dual-ring" />
+        </div>
+      );
     }
 
     return (

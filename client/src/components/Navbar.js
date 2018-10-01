@@ -1,8 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../App.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSignInAlt } from "@fortawesome/free-solid-svg-icons";
 import {
   Collapse,
   Navbar,
@@ -68,7 +66,7 @@ export default class myNavbar extends React.Component {
               </NavItem>
               <NavItem>
                 <NavLink tag={Link} to="/login">
-                  <FontAwesomeIcon icon={faSignInAlt} size="lg" alt="sign-in" />
+                  Login
                 </NavLink>
               </NavItem>
             </Nav>
