@@ -10,9 +10,25 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      response: "",
       query: ""
     };
   }
+
+  componentDidMount() {
+    this.callApi()
+      .then(res => this.setState({ response: res.express }))
+      .catch(err => console.log(err));
+  }
+
+  callApi = async () => {
+    const response = await fetch("/api/hello");
+    const body = await response.json();
+
+    if (response.status !== 200) throw Error(body.message);
+
+    return body;
+  };
 
   onUpdate = e => {
     this.setState({
@@ -29,6 +45,7 @@ class App extends Component {
               <Navbar />
             </header>
             <Selector onUpdate={this.onUpdate} />
+            <p>{this.state.response}</p>
             <Anime key={Math.random()} query={this.state.query} />
             <Switch>
               <Route exact path="/manga" component={Manga} />
