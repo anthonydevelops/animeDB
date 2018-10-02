@@ -54,9 +54,6 @@ class Selector extends Component {
           </Button>
         </ButtonGroup>
       </div>
-      //   <div className="Anime">
-      //   <Anime key={this.state.key} changedQuery={query} />
-      // </div>
     );
   }
 }

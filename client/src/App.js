@@ -10,25 +10,25 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      response: "",
+      // response: "",
       query: ""
     };
   }
 
-  componentDidMount() {
-    this.callApi()
-      .then(res => this.setState({ response: res.express }))
-      .catch(err => console.log(err));
-  }
+  // componentDidMount() {
+  //   this.callApi()
+  //     .then(res => this.setState({ response: res.express }))
+  //     .catch(err => console.log(err));
+  // }
 
-  callApi = async () => {
-    const response = await fetch("/api/hello");
-    const body = await response.json();
+  // callApi = async () => {
+  //   const response = await fetch("/api/hello");
+  //   const body = await response.json();
 
-    if (response.status !== 200) throw Error(body.message);
+  //   if (response.status !== 200) throw Error(body.message);
 
-    return body;
-  };
+  //   return body;
+  // };
 
   onUpdate = e => {
     this.setState({
@@ -39,18 +39,17 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div className="Body-wrapper">
-          <div className="Container">
-            <header>
-              <Navbar />
-            </header>
-            <Selector onUpdate={this.onUpdate} />
-            <p>{this.state.response}</p>
-            <Anime key={Math.random()} query={this.state.query} />
-            <Switch>
-              <Route exact path="/manga" component={Manga} />
-            </Switch>
-          </div>
+        <div className="Container">
+          <header>
+            <Navbar />
+          </header>
+          <Selector onUpdate={this.onUpdate} />
+          {/* <p>{this.state.response}</p> */}
+          <Anime key={Math.random()} query={this.state.query} />
+          <Switch>
+            <Route exact path="/manga" component={Manga} />
+          </Switch>
+
           <div className="Footer">
             <p>Made with &#x2764; by AC</p>
           </div>

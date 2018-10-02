@@ -5,19 +5,9 @@
 }
 
 /* APP.JS CSS MARKUP */
-.Body-wrapper {
-  display: grid;
-  grid-template-columns: 10% auto 10%;
-  justify-items: center;
-  grid-gap: 1em;
-}
-
 .Container {
-  grid-column: 2 / 3;
-}
-
-.Footer {
-  grid-column: 2 / 3;
+  margin-right: 10%;
+  margin-left: 10%;
 }
 
 /* SELECTOR CSS MARKUP */
@@ -31,9 +21,9 @@
   margin-top: 4rem;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  justify-items: center;
+  /* justify-items: center; */
   text-align: center;
-  grid-gap: 1rem;
+  grid-gap: 10px;
 }
 
 .Image {
